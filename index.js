@@ -4,7 +4,8 @@ const startGameButton = document.querySelector('#startGame'),
     wordText = document.querySelector("#word"),
     enterLetterButton = document.querySelector("#enterLetter"),
     lettersBlock = document.querySelector('#letters_block'),
-    wordBlock = document.querySelector('#word_block');
+    wordBlock = document.querySelector('#word_block'),
+    resultGame=document.querySelector('#result__game');
 
 let words = [
     "orange",
@@ -33,6 +34,7 @@ function startGame() {
     makeAttemptsBlock();
     wordBlock.innerHTML = `<p class='enteredWord'>${enteredWord.join(' ')}</p>`
     lettersBlock.innerHTML = `${createAlphabetButtons().join(' ')}`;
+    result__game.textContent='';
     for (let i = 0; i < ALPHABET.length; i++) {
         document.querySelector(`#letter-${ALPHABET[i]}`).addEventListener("click", addLetter);
     }
@@ -75,10 +77,10 @@ function checkResult(isRight) {
     }
 }
 function gameOver() {
-    alert('game over');
+    result__game.textContent='game over';
 }
 function gameWon() {
-    alert('you won');
+    result__game.textContent='you won';
 }
 function createAlphabetButtons() {
     return ALPHABET.map(el => {
