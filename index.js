@@ -5,7 +5,7 @@ const startGameButton = document.querySelector('#startGame'),
     enterLetterButton = document.querySelector("#enterLetter"),
     lettersBlock = document.querySelector('#letters_block'),
     wordBlock = document.querySelector('#word_block'),
-    resultGame=document.querySelector('#result__game');
+    resultGame = document.querySelector('#result__game');
 
 let words = [
     "orange",
@@ -30,11 +30,17 @@ let enteredWord = [];
 let wordSpell = [];
 
 function startGame() {
+    lettersEnteredCorrect = [];
+    allEnteredLetters = [];
+    numberOfAttempts = 0;
+    numberOfMoves = 0;
+    enteredWord = [];
+    wordSpell = [];
     makeWord();
     makeAttemptsBlock();
     wordBlock.innerHTML = `<p class='enteredWord'>${enteredWord.join(' ')}</p>`
     lettersBlock.innerHTML = `${createAlphabetButtons().join(' ')}`;
-    result__game.textContent='';
+    resultGame.textContent = '';
     for (let i = 0; i < ALPHABET.length; i++) {
         document.querySelector(`#letter-${ALPHABET[i]}`).addEventListener("click", addLetter);
     }
@@ -60,6 +66,9 @@ function addLetter(el) {
             enteredWord[index] = newLetter;
             wordBlock.innerHTML = `<p class='enteredWord'>${enteredWord.join(' ')}</p>`;
             isRight = true;
+            document.querySelector(`#${el.target.id}`).classList.add('letter__correct');
+        } else {
+            document.querySelector(`#${el.target.id}`).classList.add('letter__wrong');
         }
     });
     checkResult(isRight);
@@ -77,16 +86,17 @@ function checkResult(isRight) {
     }
 }
 function gameOver() {
-    result__game.textContent='game over';
+    resultGame.innerHTML = '<h2 class="result_text">Game over</h2>';
+    setTimeout(startGame, 4000);
 }
 function gameWon() {
-    result__game.textContent='you won';
+    resultGame.innerHTML = '<h2 class="result_text" >You won</h2>';
+    setTimeout(startGame, 4000);
 }
 function createAlphabetButtons() {
     return ALPHABET.map(el => {
-        return `<input type="button" value='${el}' id="letter-${el}">`
+        return `<input type="button" class='letters__button' value='${el}' id="letter-${el}">`
     })
 }
-
 
 

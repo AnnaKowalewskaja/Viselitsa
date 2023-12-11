@@ -1,0 +1,162 @@
+html {
+  font-size: 10px;
+}
+
+body {
+  background: url("./../../background.avif") repeat;
+  color: #4683b4;
+}
+
+.adaptive {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.name-game {
+  font-size: 5rem;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 1rem;
+}
+
+.attempts {
+  position: relative;
+  height: 20rem;
+  width: 25rem;
+}
+
+#step1,
+#step2,
+#step3,
+#step4,
+#step5,
+#step6,
+#step7,
+#step8,
+#step9,
+#step10,
+#step11 {
+  position: absolute;
+}
+
+#step1 {
+  top: 16rem;
+}
+
+#step2 {
+  left: 4.4rem;
+  top: -0.4rem;
+}
+
+#step3 {
+  left: 5.5rem;
+}
+
+#step4 {
+  left: 5.5rem;
+  top: -0.4rem;
+}
+
+#step5 {
+  left: 12rem;
+  top: 0.3rem;
+}
+
+#step6 {
+  left: 11.3rem;
+  top: 3.7rem;
+}
+
+#step7 {
+  left: 11.3rem;
+  top: 7.3rem;
+}
+
+#step8 {
+  left: 8.3rem;
+  top: 8.3rem;
+}
+
+#step9 {
+  left: 15.3rem;
+  top: 8.3rem;
+}
+
+#step10 {
+  left: 9.3rem;
+  top: 13.8rem;
+  transform: rotate(306deg);
+}
+
+#step11 {
+  left: 14.3rem;
+  top: 13.8rem;
+  transform: rotate(59deg);
+}
+
+.word_block {
+  background-color: rgba(70, 131, 180, 0.5921568627);
+  -webkit-backdrop-filter: blur(3px);
+          backdrop-filter: blur(3px);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+.enteredWord {
+  padding: 1rem;
+  color: white;
+  font-size: 2rem;
+}
+
+.attemptUsed path, .attemptUsed ellipse, .attemptUsed rect {
+  fill: #4683b4;
+}
+
+.letters_block {
+  max-width: 50%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.letters__button {
+  border: none;
+  background-color: #4683b4;
+  color: white;
+  border-radius: 50%;
+  font-size: 2rem;
+  width: 4rem;
+  height: 4rem;
+}
+
+.letters__button :disabled,
+.letters__button[disabled] {
+  background-color: rgba(70, 131, 180, 0.5647058824);
+}
+
+.letter__wrong {
+  color: rgba(160, 3, 3, 0.568627451);
+}
+
+.letter__correct {
+  color: #02a002;
+}
+
+.result_block {
+  height: 3rem;
+}
+
+.result_text {
+  font-size: 2rem;
+}/*# sourceMappingURL=style.css.map */

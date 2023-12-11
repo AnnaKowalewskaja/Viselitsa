@@ -6,13 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Viselitsa</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/gh/yesiamrocks/cssanimation.io@1.0.3/cssanimation.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="./styles/style/style.css">
 </head>
 
 <body>
-    <div>
+    <div class="adaptive">
         <h1 class="name-game">Viselitsa</h1>
-        <h2 id="result__game"></h2>
+        <div class='result_block' id="result__game"><h2></h2></div>
         <div class="attempts">
             <svg id='step1' width="101" height="10" viewBox="0 0 101 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="101" height="10" fill="#D9D9D9" />
@@ -55,14 +56,15 @@
 
         </div>
         <!-- /.attempts -->
-        <div class="word_block" id="word_block"> </div>
+        <div class="word_block " id="word_block"> </div>
         <div class="letters_block" id='letters_block'>
 
         </div>
         <!-- /.letters_block -->
-    </div>
 
-    <button id="startGame">Start new game</button>
+
+        <button id="startGame">Start new game</button>
+    </div>
     <script src="./index.js"></script>
 </body>
 
