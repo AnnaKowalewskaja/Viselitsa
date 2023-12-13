@@ -95,6 +95,7 @@ body
 .letters__button :disabled,
 .letters__button[disabled]
     background-color: #4683b490
+    transform: scale(0.9)
 .letter__wrong
     color: #a0030391
 .letter__correct
@@ -104,3 +105,17 @@ body
 
 .result_text
     font-size: 2rem
+
+.letters__button
+    transition: all 0.5s ease
+    cursor: pointer
+.letters__button:hover
+    transition: all 0.3s
+    border-top-width: 1px
+    border-bottom-width: 1px
+    border-top-style: solid
+    border-bottom-style: solid
+    border-top-color: rgba(255,255,255,0.5)
+    border-bottom-color: rgba(255,255,255,0.5)
+    transform: scale(0.9)
+    background: #4683b4d7

@@ -38,11 +38,18 @@ function startGame() {
     wordSpell = [];
     makeWord();
     makeAttemptsBlock();
+    removeUsedAttempts();
     wordBlock.innerHTML = `<p class='enteredWord'>${enteredWord.join(' ')}</p>`
     lettersBlock.innerHTML = `${createAlphabetButtons().join(' ')}`;
     resultGame.textContent = '';
-    for (let i = 0; i < ALPHABET.length; i++) {
-        document.querySelector(`#letter-${ALPHABET[i]}`).addEventListener("click", addLetter);
+    ALPHABET.forEach((letter) => {
+        document.querySelector(`#letter-${letter}`).addEventListener("click", addLetter);
+    }
+    )
+}
+function removeUsedAttempts() {
+    for (let i = 1; i <= 11; i++) {
+        document.querySelector(`#step${i}`).classList.remove('attemptUsed');
     }
 }
 function makeWord() {
@@ -94,8 +101,9 @@ function gameWon() {
     setTimeout(startGame, 4000);
 }
 function createAlphabetButtons() {
+
     return ALPHABET.map(el => {
-        return `<input type="button" class='letters__button' value='${el}' id="letter-${el}">`
+        return `<input type="button" class='letters__button icon-enter' value='${el}' id="letter-${el}">`
     })
 }
 
