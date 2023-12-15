@@ -5,7 +5,8 @@ const startGameButton = document.querySelector('#startGame'),
     enterLetterButton = document.querySelector("#enterLetter"),
     lettersBlock = document.querySelector('#letters_block'),
     wordBlock = document.querySelector('#word_block'),
-    resultGame = document.querySelector('#result__game');
+    resultGame = document.querySelector('#result__game'),
+    INFORMATION_STEPS = document.getElementById('information__steps');
 
 let words = [
     "orange",
@@ -30,6 +31,7 @@ let enteredWord = [];
 let wordSpell = [];
 
 function startGame() {
+    playerNameModal.style.display = "block";
     lettersEnteredCorrect = [];
     allEnteredLetters = [];
     numberOfAttempts = 0;
@@ -101,10 +103,40 @@ function gameWon() {
     setTimeout(startGame, 4000);
 }
 function createAlphabetButtons() {
-
     return ALPHABET.map(el => {
         return `<input type="button" class='letters__button icon-enter' value='${el}' id="letter-${el}">`
     })
 }
 
+function addInformationSteps() {
+    steps++;
+    INFORMATION_STEPS.textContent = `Steps: ${steps}`;
+    localStorage.setItem('test', steps);
 
+}
+localStorage.setItem('test', 1)
+console.log(localStorage);
+
+
+/*modal */
+
+const closeModalBtn = document.getElementById("closeModalBtn");
+const playerNameModal = document.getElementById("playerNameModal");
+const playerNameInput = document.getElementById("playerNameInput");
+const submitNameBtn = document.getElementById("submitNameBtn");
+
+closeModalBtn.addEventListener("click", function () {
+    playerNameModal.style.display = "none";
+});
+
+window.addEventListener("click", function (event) {
+    if (event.target === playerNameModal) {
+        playerNameModal.style.display = "none";
+    }
+});
+
+submitNameBtn.addEventListener("click", function () {
+    const playerName = playerNameInput.value;
+    alert(`Hi, ${playerName}!`);
+    playerNameModal.style.display = "none";
+});
