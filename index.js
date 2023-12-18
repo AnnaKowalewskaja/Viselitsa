@@ -6,7 +6,8 @@ const startGameButton = document.querySelector('#startGame'),
     lettersBlock = document.querySelector('#letters_block'),
     wordBlock = document.querySelector('#word_block'),
     resultGame = document.querySelector('#result__game'),
-    INFORMATION_STEPS = document.getElementById('information__steps');
+    userName = document.querySelector('#user-name');
+INFORMATION_STEPS = document.querySelector('#step-counter');
 
 let words = [
     "orange",
@@ -29,6 +30,8 @@ let numberOfMoves = 0;
 let word = '';
 let enteredWord = [];
 let wordSpell = [];
+let steps = 0;
+let playerName ='';
 
 function startGame() {
     playerNameModal.style.display = "block";
@@ -38,9 +41,11 @@ function startGame() {
     numberOfMoves = 0;
     enteredWord = [];
     wordSpell = [];
+    steps = 0;
     makeWord();
     makeAttemptsBlock();
     removeUsedAttempts();
+    INFORMATION_STEPS.textContent = `Steps: ${steps}`;
     wordBlock.innerHTML = `<p class='enteredWord'>${enteredWord.join(' ')}</p>`
     lettersBlock.innerHTML = `${createAlphabetButtons().join(' ')}`;
     resultGame.textContent = '';
@@ -52,6 +57,7 @@ function startGame() {
 function removeUsedAttempts() {
     for (let i = 1; i <= 11; i++) {
         document.querySelector(`#step${i}`).classList.remove('attemptUsed');
+        document.querySelector(`#step${i}`).classList.add('attemptHidden');
     }
 }
 function makeWord() {
@@ -84,10 +90,13 @@ function addLetter(el) {
 }
 
 function checkResult(isRight) {
+    addInformationSteps();
     if (!isRight && numberOfAttempts < 10) {
         numberOfAttempts++;
+        document.querySelector(`#step${numberOfAttempts}`).classList.remove('attemptHidden');
         document.querySelector(`#step${numberOfAttempts}`).classList.add('attemptUsed');
     } else if (numberOfAttempts === 10) {
+        document.querySelector(`#step${11}`).classList.remove('attemptHidden');
         document.querySelector(`#step${11}`).classList.add('attemptUsed');
         gameOver();
     } else if (numberOfAttempts < 11 && enteredWord.join('') === wordSpell.join('')) {
@@ -96,10 +105,12 @@ function checkResult(isRight) {
 }
 function gameOver() {
     resultGame.innerHTML = '<h2 class="result_text">Game over</h2>';
+    
     setTimeout(startGame, 4000);
 }
 function gameWon() {
     resultGame.innerHTML = '<h2 class="result_text" >You won</h2>';
+
     setTimeout(startGame, 4000);
 }
 function createAlphabetButtons() {
@@ -111,8 +122,7 @@ function createAlphabetButtons() {
 function addInformationSteps() {
     steps++;
     INFORMATION_STEPS.textContent = `Steps: ${steps}`;
-    localStorage.setItem('test', steps);
-
+    localStorage.setItem(playerName, steps);
 }
 localStorage.setItem('test', 1)
 console.log(localStorage);
@@ -136,7 +146,7 @@ window.addEventListener("click", function (event) {
 });
 
 submitNameBtn.addEventListener("click", function () {
-    const playerName = playerNameInput.value;
-    alert(`Hi, ${playerName}!`);
+    playerName = playerNameInput.value;
+    userName.textContent = playerName;
     playerNameModal.style.display = "none";
 });

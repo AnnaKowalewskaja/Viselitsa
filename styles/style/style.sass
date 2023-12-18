@@ -1,7 +1,8 @@
 html
     font-size: 10px
 body
-    background: url('./../../background.avif') repeat
+    background: url('./../../background.jpg')
+    background-size: cover
     color: #4683b4
 .adaptive
     display: flex
@@ -14,7 +15,6 @@ body
     width: fit-content
     border-radius: 1rem
     margin: 0
-    margin-bottom: 2rem
 .attempts
     position: relative
     height: 20rem
@@ -77,9 +77,13 @@ body
     padding: 1rem
     color: white
     font-size: 2rem
+.attemptHidden
+    opacity: 0
 .attemptUsed
+    opacity: 100%
     path,ellipse,rect
         fill: #4683b4
+.attempt
 .letters_block
     max-width: 50%
     display: flex
@@ -171,10 +175,12 @@ body
 .modal-content
     background-color: #fefefe
     margin: 15% auto
-    padding: 20px
+    padding: 4rem
     border: 1px solid #888
-    width: 80%
-
+    width: 50%
+    border-radius: 3rem
+    h2 
+        margin-top:0
 .close
     color: #aaa
     float: right
@@ -186,3 +192,9 @@ body
     color: black
     text-decoration: none
     cursor: pointer
+
+.user-information__block
+    display: flex
+    justify-content: space-between
+    width: 30%
+    font-size: 2rem
