@@ -127,7 +127,10 @@ function addInformationSteps() {
 localStorage.setItem('test', 1)
 console.log(localStorage);
 
+function getCheckedCheckBoxes() {
 
+
+}
 /*modal */
 
 const closeModalBtn = document.getElementById("closeModalBtn");
