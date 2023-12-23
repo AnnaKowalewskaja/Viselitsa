@@ -16,6 +16,7 @@
         <div class="user-information__block">
             <p id="user-name"></p>
             <p id="step-counter"></p>
+            <p id="category"></p>
         </div>
         <div class="attemptsWorld__block">
             <div class="attempts">
@@ -92,23 +93,29 @@
                     <span class="close" id="closeModalBtn">&times;</span>
                     <h2>What your name:</h2>
                     <input type="text" id="playerNameInput" placeholder="Your name">
-                    <button id="submitNameBtn">Ok</button>
+                   
                 </div>
                 <div class="modal-content__category">
                     <p>Choose category's:</p>
-                    <input type="checkbox" id="categoryChoice1" name="category" value="animals" />
-                    <label for="categoryChoice1">Animals</label>
+                    <input type="radio" class="category__button" id="categoryChoice1" name="category" value="animals" />
+                    <label class="category__label" for="categoryChoice1">Animals</label>
 
-                    <input type="checkbox" id="categoryChoice2" name="category" value="cities" />
-                    <label for="categoryChoice2">Cities</label>
+                    <input type="radio" class="category__button" id="categoryChoice2" name="category" value="geography" />
+                    <label class="category__label" for="categoryChoice2">Geography</label>
 
-                    <input type="checkbox" id="categoryChoice3" name="category" value="hobbies" />
-                    <label for="categoryChoice3">Hobbies</label>
+                    <input type="radio" class="category__button" id="categoryChoice3" name="category" value="hobbies" />
+                    <label class="category__label" for="categoryChoice3">Hobbies</label>
 
-                    <input type="checkbox" id="categoryChoice4" name="category" value="science" />
-                    <label for="categoryChoice4">The science</label>
+                    <input type="radio" class="category__button" id="categoryChoice4" name="category" value="clothes" />
+                    <label class="category__label" for="categoryChoice4">Clothes</label>
+                    
+                    <input type="radio" class="category__button" id="categoryChoice5" name="category" value="sport" />
+                    <label class="category__label" for="categoryChoice5">Sport</label>
+
+                    <input type="radio" class="category__button" id="categoryChoice6" name="category" value="all" />
+                    <label class="category__label" for="categoryChoice5">All</label>
                 </div>
-
+                <button id="submitNameBtn">Ok</button>
 
             </div>
         </div>

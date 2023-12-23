@@ -142,6 +142,11 @@ body {
   gap: 0.5rem;
   transition: all 0.3s;
 }
+@media (min-width: 1440px) {
+  .letters_block {
+    max-width: 30%;
+  }
+}
 
 .letters__button {
   border: none;
@@ -279,4 +284,15 @@ body {
   justify-content: space-between;
   width: 30%;
   font-size: 2rem;
+}
+
+.category__label {
+  font-size: 1.7rem;
+}
+
+.modal-content__category input, .modal-content__category label:hover {
+  cursor: pointer;
+  color: #aaa;
+  transform: scale(0.9);
+  transition: all 0.5s ease;
 }/*# sourceMappingURL=style.css.map */

@@ -6,22 +6,70 @@ const startGameButton = document.querySelector('#startGame'),
     lettersBlock = document.querySelector('#letters_block'),
     wordBlock = document.querySelector('#word_block'),
     resultGame = document.querySelector('#result__game'),
-    userName = document.querySelector('#user-name');
-INFORMATION_STEPS = document.querySelector('#step-counter');
-
-let words = [
-    "orange",
-    "dictionary",
-    "situation",
-    "development",
-    "result",
-    "art",
-    "good",
-];
+    userName = document.querySelector('#user-name'),
+    categoryText= document.querySelector('#category'),
+    INFORMATION_STEPS = document.querySelector('#step-counter');
+ const wordList = {
+    animals: ['lion',
+        'elephant',
+        'giraffe',
+        'tiger',
+        'zebra',
+        'monkey',
+        'penguin',
+        'kangaroo',
+        'hippopotamus',
+        'crocodile'],
+    geography: ["Mountain",
+        "River",
+        "Desert",
+        "Forest",
+        "Ocean",
+        "Island",
+        "Valley",
+        "Canyon",
+        "Peninsula",
+        "Plateau",],
+    hobbies: ["Reading",
+        "Painting",
+        "Cooking",
+        "Gardening",
+        "Photography",
+        "Singing",
+        "Cycling",
+        "Drawing",
+        "Traveling",
+        "Writing",],
+    clothes: ["Shirt",
+        "Jeans",
+        "Dress",
+        "Sweater",
+        "Jacket",
+        "Hat",
+        "Shoes",
+        "Skirt",
+        "Gloves",
+        "Socks",
+    ],
+    sport: ["Football",
+        "Basketball",
+        "Tennis",
+        "Swimming",
+        "Cycling",
+        "Running",
+        "Golf",
+        "Soccer",
+        "Volleyball",
+        "Boxing",],
+    get all() {
+        return [...this.animals, ...this.geography, ...this.hobbies, ...this.clothes, ...this.sport];
+    }
+};
 const ALPHABET = ['A', 'E', 'I', 'O', 'U', 'Y',
     'B', 'C', 'D', 'F', 'G', 'H', 'J', 'K', 'L',
     'M', 'N', 'P', 'Q', 'R', 'S', 'T', 'V', 'W', 'X', 'Y', 'Z'
 ]
+
 startGameButton.addEventListener("click", startGame);
 let lettersEnteredCorrect = [];
 let allEnteredLetters = [];
@@ -31,7 +79,10 @@ let word = '';
 let enteredWord = [];
 let wordSpell = [];
 let steps = 0;
-let playerName ='';
+let playerName = '';
+let category = '';
+
+
 
 function startGame() {
     playerNameModal.style.display = "block";
@@ -40,13 +91,11 @@ function startGame() {
     numberOfAttempts = 0;
     numberOfMoves = 0;
     enteredWord = [];
-    wordSpell = [];
     steps = 0;
-    makeWord();
     makeAttemptsBlock();
     removeUsedAttempts();
+    uncheckCheckboxes();
     INFORMATION_STEPS.textContent = `Steps: ${steps}`;
-    wordBlock.innerHTML = `<p class='enteredWord'>${enteredWord.join(' ')}</p>`
     lettersBlock.innerHTML = `${createAlphabetButtons().join(' ')}`;
     resultGame.textContent = '';
     ALPHABET.forEach((letter) => {
@@ -60,15 +109,17 @@ function removeUsedAttempts() {
         document.querySelector(`#step${i}`).classList.add('attemptHidden');
     }
 }
-function makeWord() {
-    word = words[Math.floor(Math.random() * words.length)];
+
+function makeWord(value) {
+    const wordCategory = wordList[value];
+    const wordRandomNum = Math.floor(Math.random() * (wordCategory.length - 1 - 0) + 0);
+    word = wordCategory[wordRandomNum];
     enteredWord = word.split('').map(el => el = '_');
     wordSpell = word.toUpperCase().split('');
+    wordBlock.innerHTML = `<p class='enteredWord'>${enteredWord.join(' ')}</p>`
 }
 
-function makeAttemptsBlock() {
 
-}
 function addLetter(el) {
     const newLetter = el.target.value;
     let isRight = false;
@@ -105,12 +156,10 @@ function checkResult(isRight) {
 }
 function gameOver() {
     resultGame.innerHTML = '<h2 class="result_text">Game over</h2>';
-    
     setTimeout(startGame, 4000);
 }
 function gameWon() {
     resultGame.innerHTML = '<h2 class="result_text" >You won</h2>';
-
     setTimeout(startGame, 4000);
 }
 function createAlphabetButtons() {
@@ -124,19 +173,17 @@ function addInformationSteps() {
     INFORMATION_STEPS.textContent = `Steps: ${steps}`;
     localStorage.setItem(playerName, steps);
 }
-localStorage.setItem('test', 1)
-console.log(localStorage);
 
-function getCheckedCheckBoxes() {
-
-
+function uncheckCheckboxes() {
+    const checkboxes = document.querySelectorAll('input[name="category"]');
+    checkboxes.forEach(checkbox => checkbox.checked = false);
 }
 /*modal */
 
-const closeModalBtn = document.getElementById("closeModalBtn");
-const playerNameModal = document.getElementById("playerNameModal");
-const playerNameInput = document.getElementById("playerNameInput");
-const submitNameBtn = document.getElementById("submitNameBtn");
+const closeModalBtn = document.querySelector("#closeModalBtn");
+const playerNameModal = document.querySelector("#playerNameModal");
+const playerNameInput = document.querySelector("#playerNameInput");
+const submitNameBtn = document.querySelector("#submitNameBtn");
 
 closeModalBtn.addEventListener("click", function () {
     playerNameModal.style.display = "none";
@@ -151,5 +198,8 @@ window.addEventListener("click", function (event) {
 submitNameBtn.addEventListener("click", function () {
     playerName = playerNameInput.value;
     userName.textContent = playerName;
+    let inputCheckedValue = document.querySelector('input[name="category"]:checked').value;
+    makeWord(inputCheckedValue);
+    categoryText.textContent = inputCheckedValue.toUpperCase();
     playerNameModal.style.display = "none";
 });

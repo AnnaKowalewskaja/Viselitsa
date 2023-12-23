@@ -93,6 +93,10 @@ body
     align-items: stretch
     gap: .5rem
     transition: all 0.3s
+
+    @media (min-width: 1440px)
+        max-width: 30%
+
 .letters__button
     border: none
     background-color: #4683b4
@@ -179,8 +183,8 @@ body
     border: 1px solid #888
     width: 50%
     border-radius: 3rem
-    h2 
-        margin-top:0
+    h2
+        margin-top: 0
 .close
     color: #aaa
     float: right
@@ -198,3 +202,13 @@ body
     justify-content: space-between
     width: 30%
     font-size: 2rem
+
+.category__label
+    font-size: 1.7rem
+
+.modal-content__category
+    input,label:hover
+        cursor: pointer
+        color: #aaa
+        transform: scale(0.9)
+        transition: all 0.5s ease
